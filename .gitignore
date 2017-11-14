@@ -1,0 +1,9 @@
+/LightOut/nbproject/
+
+/LightOut/*.xml/
+
+/LightOut/*.mf/
+
+/LightOut/build/
+
+/LightOut/test/
