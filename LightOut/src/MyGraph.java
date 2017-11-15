@@ -42,6 +42,8 @@ public class MyGraph {
         Graphs.addAllVertices(Graph, GridNumber);
         for (int i = 0; i < G.getGrid().length; i++) {
             for (int j = 0; j < G.getGrid()[i].length; j++) {
+                
+                //Link node ?????
                 Graph.addEdge((double)i, (double)j );
             }
         }
