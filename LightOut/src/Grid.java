@@ -9,7 +9,7 @@
  * @author User
  */
 public class Grid {
-    	private double number;
+	private double number;
 	private double binary_num;
 	public Grid(double n, double bn)	{ number = n; binary_num = bn; }
 	public double getNumber()			    { return number; }
