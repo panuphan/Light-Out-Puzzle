@@ -21,7 +21,6 @@ public class LightOut {
         String[] row = new String[grid];
         for(int i =0 ; i < grid ; i++)
         row[i] = scan.nextLine();
-        
     }
     
 }

@@ -22,15 +22,15 @@ public class Grid {
 	}
 	public void print(int r)
 	{
-                        double row = (double)r; 
-                        
-                        System.out.println("Number " + number );
-                        String s = Double.toString(binary_num);  
-		                  for(int i = 0 ; i < row ; i++){
-                      for(int j = 0 ; j < row ; j++){
-                          System.out.print(s.charAt(0)+" ");
-                      }
-                      System.out.println("");
-                  }
+            double row = (double) r;
+
+            System.out.println("Number " + number);
+            String s = Double.toString(binary_num);
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < row; j++) {
+                    System.out.print(s.charAt(0) + " ");
+                }
+                System.out.println("");
+            }
 	}
 }
