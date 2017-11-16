@@ -22,8 +22,7 @@ public class Grid {
         G.equals(g);
             
     }
-
-    ;
+    
 	public double getNumber() {
         return number;
     }
@@ -31,6 +30,12 @@ public class Grid {
     public double getBinaryNum() {
         return binary_num;
     }
+    
+    public int[][] getGrid(){
+        return G;
+    }
+    
+    
 
     public void print(int r) {
         double row = (double) r;
@@ -55,24 +60,26 @@ public class Grid {
     } 
 
     public int[][] M(int i, int j) {
-        G[i][j]     += 1;
+        int[][] M = new int[G.length][G.length];
+        M.equals(G);
+        M[i][j]     += 1;
         try{
-        G[i + 1][j] += 1;
+        M[i + 1][j] += 1;
         }catch(Exception e){};
         
         try{
-        G[i - 1][j] += 1;
+        M[i - 1][j] += 1;
         }catch(Exception e){};
         
         try{
-        G[i][j + 1] += 1;
+        M[i][j + 1] += 1;
         }catch(Exception e){};
         
         try{
-        G[i][j - 1] += 1;
+        M[i][j - 1] += 1;
         }catch(Exception e){};
         
-        return G;
+        return M;
     }
     
     public boolean isComplete(){

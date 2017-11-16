@@ -17,15 +17,20 @@ public class MyGraph {
 	private Graph<Double, DefaultEdge>                       Graph;
 	private SimpleGraph<Double, DefaultEdge>                 SG;
 	private ConnectivityInspector<Double, DefaultEdge>       conn;
-	private KruskalMinimumSpanningTree<Double, DefaultEdge>  MST;
+        protected DijkstraShortestPath<Double, DefaultEdge>         DSP;
         
         
     public MyGraph(Grid G) {
-
+        
         AllGrids = new HashMap<>();
         GridNumber = new ArrayList<>();
-
-        double node = 0;
+        
+        // add G
+         AllGrids.put(0.0 , G.getGrid() );
+         GridNumber.add( 0.0 );
+         
+        // add M 
+        double node = 1;
         for (int i = 0; i < G.getGrid().length; i++) {
             for (int j = 0; j < G.getGrid()[i].length; j++) {
 
@@ -35,20 +40,25 @@ public class MyGraph {
 
             }
         }
+        
+        // add 0 
+         int[][] O = new int[G.getGrid().length][G.getGrid().length];
+         O.equals(G.getGrid());
+         Arrays.fill(O, 0);
+         AllGrids.put(node , O );
+         GridNumber.add( node );
+        
+        
 
         SG = new SimpleGraph<Double, DefaultEdge>(DefaultEdge.class);
         Graph = (Graph<Double, DefaultEdge>) SG;
-
         Graphs.addAllVertices(Graph, GridNumber);
-        for (int i = 0; i < G.getGrid().length; i++) {
-            for (int j = 0; j < G.getGrid()[i].length; j++) {
-                
-                //Link node ?????
-                Graph.addEdge((double)i, (double)j );
-            }
-        }
+        
+        
+
     }
     
+
 
         
     
