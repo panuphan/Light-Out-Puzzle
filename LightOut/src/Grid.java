@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class Grid {
 	}
 	private double number;
-	public String getMessage()
+	public String getMessage();
 
     private String name;
     private int[][] G;

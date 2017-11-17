@@ -3,10 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.util.*;
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
-import org.jgrapht.alg.*;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.alg.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.SimpleGraph;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
 
 
 public class MyGraph {
@@ -152,7 +159,7 @@ public class MyGraph {
         
     }
  
- public  void Re(){
+ /*public  void Re(){
            for (int i = 0; i < G.getGrid().length; i++) {
             for (int j = 0; j < G.getGrid().length; j++) {
                 
@@ -172,7 +179,7 @@ public class MyGraph {
         G = new Grid(temp);
        }
        }
- }
+ }*/
     
 }
 
