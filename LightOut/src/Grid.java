@@ -12,9 +12,9 @@ import java.util.Arrays;
  * @author User
  */
 public class Grid {
-	}
+
 	private double number;
-	public String getMessage();
+
 
     private String name;
     private int[][] G;
