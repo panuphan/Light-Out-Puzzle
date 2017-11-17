@@ -49,47 +49,51 @@ public class Grid {
 
     public int[][] M(int i, int j) {
         
-        int[][] M ;
-        M = G;
+        int[][] C = new int[G.length][G.length];
+        for(int i1 = 0 ; i1< C.length ; i1++){
+            for(int j1 = 0 ; j1 < C.length ; j1++){
+                C[i1][j1] = G[i1][j1];
+            }
+        }
         
-        M[i][j]     += 1;
-        if(M[i][j] % 2 == 0 ) M[i][j] = 0;
+        
+        C[i][j]     += 1;
+        if(C[i][j] % 2 == 0 ) C[i][j] = 0;
         
         try{
-        M[i + 1][j] += 1;
-        if(M[i+1][j] % 2 == 0 ) M[i+1][j] = 0;
+        C[i + 1][j] += 1;
+        if(C[i+1][j] % 2 == 0 )C[i+1][j] = 0;
         }catch(Exception e){};
         
         try{
-        M[i - 1][j] += 1;
-        if(M[i-1][j] % 2 == 0 ) M[i-1][j] = 0;
+        C[i - 1][j] += 1;
+        if(C[i-1][j] % 2 == 0 ) C[i-1][j] = 0;
         }catch(Exception e){};
         
         try{
-        M[i][j + 1] += 1;
-        if(M[i][j+1] % 2 == 0 ) M[i][j+1] = 0;
+        C[i][j + 1] += 1;
+        if(C[i][j+1] % 2 == 0 ) C[i][j+1] = 0;
         }catch(Exception e){};
         
         try{
-        M[i][j - 1] += 1;
-        if(M[i][j-1] % 2 == 0 ) M[i][j-1] = 0;
+        C[i][j - 1] += 1;
+        if(C[i][j-1] % 2 == 0 ) C[i][j-1] = 0;
         }catch(Exception e){};
         
-        return M;
+        return C;
     }
     
     public boolean isComplete(){
         int[][] O = new int[G.length][G.length];
-        //Arrays.fill(O, 0);
         return Arrays.equals(G, O);
 
     }
     
     public void Setname(){
-        String n = null ;
+        String n = "" ;
         for(int i = 0 ; i< G.length ; i++){
             for(int j =0 ; j < G.length ; j++){
-                if(n==null)n= Integer.toString(G[i][j]);
+
                 n += Integer.toString(G[i][j]);
             }
         }
