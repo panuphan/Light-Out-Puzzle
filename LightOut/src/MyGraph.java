@@ -164,9 +164,6 @@ public class MyGraph {
         System.out.println("target");
         target.print();
         
-            
-
-
         }
     }
     
@@ -179,7 +176,8 @@ public class MyGraph {
             System.out.println("");
         }
         
-        System.out.println("");
+        
+        System.out.println(""); 
     }
 
     
