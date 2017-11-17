@@ -13,6 +13,9 @@ import java.util.Arrays;
  */
 public class Grid {
 
+	private double number;
+
+
     private String name;
     private int[][] G;
 
