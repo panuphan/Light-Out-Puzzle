@@ -65,7 +65,7 @@ public class LightOut {
                       };
         */
         Grid Grid = new Grid(arr);
-        Grid.print();
+        //Grid.print();
         MyGraph Mygraph = new MyGraph(Grid);
         System.out.println("----------------" );
         Mygraph.ShortestPath(Grid);
