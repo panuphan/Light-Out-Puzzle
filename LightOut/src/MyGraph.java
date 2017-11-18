@@ -6,11 +6,11 @@ import org.jgrapht.alg.*;
 
 public class MyGraph {
    
-    private HashMap<Double, Grid>    AllGrids;      // real objects
-    private ArrayList<Double>          GridNumber;  // graph nodes
-    private Graph<Double, DefaultEdge>                       G;
-    private SimpleGraph<Double, DefaultEdge>                 SG;
-    private DijkstraShortestPath<Double, DefaultEdge>        DSP;
+    private HashMap<String, Grid>    AllGrids;      // real objects
+    private ArrayList<String>          GridNumber;  // graph nodes
+    private Graph<String, DefaultEdge>                       G;
+    private SimpleGraph<String, DefaultEdge>                 SG;
+    private DijkstraShortestPath<String, DefaultEdge>        DSP;
       
         
     public MyGraph(Grid target) {
@@ -20,7 +20,7 @@ public class MyGraph {
         
  
         SG = new SimpleGraph<>(DefaultEdge.class);
-	G  = (Graph<Double, DefaultEdge>)SG;
+	G  = (Graph<String, DefaultEdge>)SG;
 	//Graphs.addAllVertices(G, GridNumber);
         initGraph(target);
         
@@ -33,12 +33,15 @@ public class MyGraph {
         //add Grid All Zero in ArrayList
         int[][] arr = new int[target.getGrid().length][target.getGrid().length];
         Grid Head = new Grid(arr);
-        GridNumber.add( Double.parseDouble(Head.getName()) );
-        AllGrids.put(Double.parseDouble(Head.getName()), Head);
+        GridNumber.add( Head.getName() );
+        AllGrids.put(Head.getName(), Head);
         
         //loop for change Head node  
-        for (int head = 1; head <= GridNumber.size() ; head++) {
+        for (int head = 0; !(GridNumber.contains(target.getName())) ; head++) {
             
+            // new head is next grid in ArrayList
+            Head = AllGrids.get( GridNumber.get(head) );  
+            //System.out.println("head=" +GridNumber.size());
             //loop for change switch' position
             for (int i = 0; i < arr.length; i++) {
                 for (int j = 0; j < arr.length; j++) {
@@ -48,39 +51,39 @@ public class MyGraph {
                     
                     //check tail must not exist ArrayList , 
                     //add tail in ArrayList and add edge. 
-                    if (!(GridNumber.contains(Double.parseDouble(tail.getName())))) {
-                        GridNumber.add(Double.parseDouble(tail.getName()) );
-                        AllGrids.put(Double.parseDouble(tail.getName()) , tail);
+                    if (!(GridNumber.contains(tail.getName()))) {
+                        GridNumber.add(tail.getName() );
+                        AllGrids.put(tail.getName() , tail);
                         
                         //GridNumber have Update allways,
                         //so Update AllVertices 
                         Graphs.addAllVertices(G, GridNumber);
                         
                         //Link Head node - tail node
-                        G.addEdge(Double.parseDouble(Head.getName()), Double.parseDouble(tail.getName()) );
+                        G.addEdge(Head.getName(), tail.getName() );
 
                     }
                     
                     //if Grid in Arraylist equals Grid target ,Break loop j.
-                    if (GridNumber.contains(Double.parseDouble(target.getName())) ) {
+                    if (GridNumber.contains( target.getName() ) ) {
                         break;
                     }
 
                 }
                 //if Grid in Arraylist equals Grid target ,Break loop i.
-                if (GridNumber.contains(Double.parseDouble(target.getName()))) {
+                if (GridNumber.contains(target.getName())) {
                     break;
                 }
             }//end loop for change switch' position
             
             //if Grid in Arraylist equals Grid target ,Break loop head.
-            if (GridNumber.contains(Double.parseDouble(target.getName())) ) {
+            if (GridNumber.contains(target.getName()) ) {
                 System.out.println("TARGET");
                 break;
             } 
             
             // new head is next grid in ArrayList
-            Head = AllGrids.get( GridNumber.get(head) );    
+           // Head = AllGrids.get( GridNumber.get(head) );    
 
         }
 
@@ -89,7 +92,7 @@ public class MyGraph {
     //////////////////////////////////////////////////////////////////////////// 
     // Methods to print
         
-    public Grid searchGrid(Double node) {
+    public Grid searchGrid(String node) {
         
         return AllGrids.get(node);
     }
@@ -118,11 +121,11 @@ public class MyGraph {
     ////////////////////////////////////////////////////////////////////////////   
     public void testShortestPath(Grid target) {
 
-        double key1 = Double.parseDouble(target.getName());
+        String key1 = target.getName();
 
         int[][] arr = new int[target.getGrid().length][target.getGrid().length];
         Grid O = new Grid(arr);
-        double key2 = Double.parseDouble(O.getName());
+        String key2 = O.getName();
 
         // source and target must exist, otherwise error
         if (G.containsVertex(key1) && G.containsVertex(key2)) {
