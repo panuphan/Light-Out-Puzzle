@@ -21,7 +21,12 @@ public class Grid {
 
     public Grid(int[][] g) {
             
-        G = Arrays.copyOf(g, g.length); 
+        G = new int[g.length][g.length];
+        for(int i = 0 ; i < g.length ; i++){
+            for(int j = 0 ; j < g.length ; j++){
+                G[i][j] = g[i][j];
+            }
+        }
         Setname();
             
     }
@@ -37,7 +42,7 @@ public class Grid {
     
     
     public void print(){
-            System.out.println("name : "+name);
+           // System.out.println("name : "+name);
         for(int i  = 0 ; i < G.length ; i++){
             for(int j = 0 ; j <G.length ; j++){
                 System.out.print( G[i][j] + " " );
@@ -55,8 +60,7 @@ public class Grid {
                 C[i1][j1] = G[i1][j1];
             }
         }
-        
-        
+ 
         C[i][j]     += 1;
         if(C[i][j] % 2 == 0 ) C[i][j] = 0;
         
@@ -83,11 +87,6 @@ public class Grid {
         return C;
     }
     
-    public boolean isComplete(){
-        int[][] O = new int[G.length][G.length];
-        return Arrays.equals(G, O);
-
-    }
     
     public void Setname(){
         String n = "" ;
@@ -100,8 +99,19 @@ public class Grid {
         name = n;
     }
     
+    /*
+    public int[][] plus(int[][] other){
+        
+        int[][] arr = new int[G.length][G.length];
+        for(int i = 0 ; i < G.length ; i++){
+            for(int j = 0 ; j < G.length ; j++){
+                arr[i][j] = (G[i][j] + other[i][j])%2;
+            }
+        }
+        return arr;
+    }
     
-    
+    */
     
     
     

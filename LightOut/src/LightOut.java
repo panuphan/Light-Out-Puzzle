@@ -11,7 +11,7 @@ public class LightOut {
         // TODO code application logic here
         int grid;
      
-    try{
+
         
         System.out.print("Enter number of rows = ");
         Scanner scan  = new Scanner(System.in);
@@ -23,15 +23,23 @@ public class LightOut {
         
         System.out.println("Enter initial states : " );
         String[] row = new String[grid];
+        /*
+        // for TEST 4*4 or 5*5 
+        int[][] arr = { {1,1,0,1,1},
+                        {1,0,0,0,1},
+                        {0,0,0,0,0},
+                        {0,0,0,0,0},
+                        {0,0,0,0,0},      
+        };
+        
+        */
         int[][] arr = new int[grid][grid];
         Random r;
-        
-        
         for(int i =0 ; i < grid ; i++){
-            /*
-            row[i] = scan.nextLine();
-            String[] buf = row[i].split("\\s+");
-            */
+            
+            //row[i] = scan.nextLine();
+            //String[] buf = row[i].split("\\s+");
+            
             for(int j = 0 ;j < grid ; j++ )
             //arr[i][j] = Integer.parseInt(buf[j]);
             {  r = new Random(); 
@@ -45,8 +53,9 @@ public class LightOut {
         printArray(arr);
         Grid Grid = new Grid(arr);
         MyGraph Mygraph = new MyGraph(Grid);
-        //Mygraph.printGraph();
-       }catch(Exception e){};
+        Mygraph.testShortestPath(Grid);
+       //Mygraph.printGraph();
+ 
        
        
        
