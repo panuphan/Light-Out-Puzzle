@@ -16,18 +16,16 @@ public class MyGraph {
     public MyGraph(Grid target) {
         
          AllGrids = new HashMap<>();
-        GridNumber = new  ArrayList<>();
-        
- 
+        GridNumber = new  ArrayList<>();        
         SG = new SimpleGraph<>(DefaultEdge.class);
 	G  = (Graph<String, DefaultEdge>)SG;
-	//Graphs.addAllVertices(G, GridNumber);
+
         initGraph(target);
         
     }
     
     
-    
+ ///////////////////////////////////////////////////////////////////////////////   
     private void initGraph( Grid target) {
         
         //add Grid All Zero in ArrayList
@@ -35,54 +33,40 @@ public class MyGraph {
         Grid Head = new Grid(arr);
         GridNumber.add( Head.getName() );
         AllGrids.put(Head.getName(), Head);
+        boolean found = GridNumber.contains(target.getName());
         
         //loop for change Head node  
-        for (int head = 0; head < GridNumber.size() ; head++) {
-            
+        for (int head = 0; head < GridNumber.size() && !found; head++) {
+
             // new head is next grid in ArrayList
-            Head = AllGrids.get( GridNumber.get(head) );  
-            //System.out.println("head=" +GridNumber.size());
+            Head = AllGrids.get(GridNumber.get(head));
+
+            
             //loop for change switch' position
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = 0; j < arr.length; j++) {
-                    
+            for (int i = 0; i < arr.length && !found; i++) {
+                for (int j = 0; j < arr.length && !found; j++) {
+
                     // Create Grid tail, tail is Head enter switch
                     Grid tail = new Grid(Head.M(i, j));
-                    
-                    //check tail must not exist ArrayList , 
-                    //add tail in ArrayList and add edge. 
+
+                    //check tail must not exist ArrayList, add tail in ArrayList and add edge. 
                     if (!(GridNumber.contains(tail.getName()))) {
-                        GridNumber.add(tail.getName() );
-                        AllGrids.put(tail.getName() , tail);
-                        
-                        //GridNumber have Update allways,
-                        //so Update AllVertices 
+                        GridNumber.add(tail.getName());
+                        AllGrids.put(tail.getName(), tail);
+
+                        //GridNumber have Update always,so Update AllVertices 
                         Graphs.addAllVertices(G, GridNumber);
-                        
+
                         //Link Head node - tail node
-                        G.addEdge(Head.getName(), tail.getName() );
+                        G.addEdge(Head.getName(), tail.getName());
 
-                    }
-                    
-                    //if Grid in Arraylist equals Grid target ,Break loop j.
-                    if (GridNumber.contains( target.getName() ) ) {
-                        break;
                     }
 
                 }
-                //if Grid in Arraylist equals Grid target ,Break loop i.
-                if (GridNumber.contains(target.getName())) {
-                    break;
-                }
+
             }//end loop for change switch' position
-            
-            //if Grid in Arraylist equals Grid target ,Break loop head.
-            if (GridNumber.contains(target.getName()) ) {
-                System.out.println("TARGET");
-                break;
-            } 
 
-        }
+        }//end loop for change head
 
     }
 
@@ -94,12 +78,7 @@ public class MyGraph {
         return AllGrids.get(node);
     }
 
-    public void printGraph() {
-        Set<DefaultEdge> allEdges = G.edgeSet();
-        printDefaultEdges(allEdges);
-    }
-
-    public void printDefaultEdges(Collection<DefaultEdge> E) {
+    public void printGraphEdges(Collection<DefaultEdge> E) {
         
         Grid source = null;
         
@@ -107,19 +86,19 @@ public class MyGraph {
             
         source = searchGrid(G.getEdgeSource(e));
         Grid target = searchGrid(G.getEdgeTarget(e));
-        
-        System.out.println("Click row i col j " );
         target.print();
+        source.printSwitch(target);
+        
         }
+        
         if(source !=null){
-            System.out.println("Click row i col j " );
             source.print();
         }
         
     }
     
     ////////////////////////////////////////////////////////////////////////////   
-    public void testShortestPath(Grid target) {
+    public void ShortestPath(Grid target) {
 
         String key1 = target.getName();
 
@@ -131,31 +110,14 @@ public class MyGraph {
         if (G.containsVertex(key1) && G.containsVertex(key2)) {
             DSP = new DijkstraShortestPath<>(SG, key1, key2);
             List<DefaultEdge> path = DSP.getPathEdgeList();
-            //if (path != null) {
-                System.out.printf("\nShortest path (length = %.0f) \n",
-                        DSP.getPathLength());
-                printDefaultEdges(path);
-           // }
+
+            System.out.println("Minimum Click = " + (int) DSP.getPathLength());
+            printGraphEdges(path);
+        } else {
+            System.out.println("\nNo Solutions ");
         }
-        else {
-                System.out.println("\nNo path from "+key1+ " to "+key2+" |Enter Grid again !");
-        }
-    }
-    
-    //////////////////////////////////////////////////////////////////////////// 
- public  void printArray(int[][] A){
-        for(int i  = 0 ; i < A.length ; i++){
-            for(int j = 0 ; j <A.length ; j++){
-                System.out.print( A[i][j] + " " );
-            }
-            System.out.println("");
-        }
-        
-        
-        System.out.println(""); 
     }
 
-    
 }
 
 
