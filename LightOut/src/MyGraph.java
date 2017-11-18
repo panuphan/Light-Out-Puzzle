@@ -38,6 +38,7 @@ public class MyGraph {
         
         //loop for change Head node  
         for (int head = 1; head <= GridNumber.size() ; head++) {
+            
             //loop for change switch' position
             for (int i = 0; i < arr.length; i++) {
                 for (int j = 0; j < arr.length; j++) {
