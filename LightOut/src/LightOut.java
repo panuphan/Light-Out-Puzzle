@@ -23,10 +23,18 @@ public class LightOut {
         
         System.out.println("Enter initial states : " );
         String[] row = new String[grid];
+        /*
+        // for TEST 4*4 or 5*5 
+        int[][] arr = { {1,1,0,1,1},
+                        {1,0,0,0,1},
+                        {0,0,0,0,0},
+                        {0,0,0,0,0},
+                        {0,0,0,0,0},      
+        };
+        
+        */
         int[][] arr = new int[grid][grid];
         Random r;
-        
-        
         for(int i =0 ; i < grid ; i++){
             
             //row[i] = scan.nextLine();
