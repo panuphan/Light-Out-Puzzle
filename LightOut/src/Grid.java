@@ -13,36 +13,25 @@ import java.util.Arrays;
  */
 public class Grid {
 
-	private double number;
-
-
     private String name;
     private int[][] G;
 
     public Grid(int[][] g) {
-            
-        G = new int[g.length][g.length];
-        for(int i = 0 ; i < g.length ; i++){
-            for(int j = 0 ; j < g.length ; j++){
-                G[i][j] = g[i][j];
-            }
-        }
+        G = g;
         Setname();
-            
     }
-    
-	public String getName() {
+
+    public String getName() {
         return name;
     }
 
-    
     public int[][] getGrid(){
         return G;
     }
     
     
     public void print(){
-           // System.out.println("name : "+name);
+
         for(int i  = 0 ; i < G.length ; i++){
             for(int j = 0 ; j <G.length ; j++){
                 System.out.print( G[i][j] + " " );
@@ -50,23 +39,21 @@ public class Grid {
             System.out.println("");
         }
         System.out.println("");
+        
     } 
 
     public int[][] M(int i, int j) {
+
+        int[][] C = CopyArray(G);
         
-        int[][] C = new int[G.length][G.length];
-        for(int i1 = 0 ; i1< C.length ; i1++){
-            for(int j1 = 0 ; j1 < C.length ; j1++){
-                C[i1][j1] = G[i1][j1];
-            }
-        }
- 
+        try{
         C[i][j]     += 1;
-        if(C[i][j] % 2 == 0 ) C[i][j] = 0;
+        if(C[i][j] % 2 == 0 )  C[i][j] = 0;
+        }catch(Exception e){};
         
         try{
         C[i + 1][j] += 1;
-        if(C[i+1][j] % 2 == 0 )C[i+1][j] = 0;
+        if(C[i+1][j] % 2 == 0 ) C[i+1][j] = 0;
         }catch(Exception e){};
         
         try{
@@ -87,6 +74,16 @@ public class Grid {
         return C;
     }
     
+    public int[][] CopyArray(int[][] copy){
+        int[][] place = new int[copy.length][copy.length];
+        for(int i = 0 ; i < place.length ; i++){
+            for(int j = 0 ; j < place.length ; j++){
+                place[i][j] = copy[i][j];
+            }
+        }
+        return place;
+    }
+    
     
     public void Setname(){
         String n = "" ;
@@ -99,19 +96,25 @@ public class Grid {
         name = n;
     }
     
-    /*
-    public int[][] plus(int[][] other){
-        
-        int[][] arr = new int[G.length][G.length];
-        for(int i = 0 ; i < G.length ; i++){
-            for(int j = 0 ; j < G.length ; j++){
-                arr[i][j] = (G[i][j] + other[i][j])%2;
+    
+    public void printSwitch(Grid gridNext) {
+
+        boolean found = false;
+        for (int i = 0; !found && i < G.length ; i++) {
+            for (int j = 0; !found && j < G.length  ; j++) {
+                
+                Grid g = new Grid(this.M(i, j));                   
+                    
+                if ( gridNext.getName().equalsIgnoreCase(g.getName()) ) {
+                    System.out.println("Click : col " + j + " row " + i +" result :");
+                    found = true;
+                }
             }
         }
-        return arr;
+
     }
     
-    */
+    
     
     
     
