@@ -37,7 +37,7 @@ public class MyGraph {
         AllGrids.put(Head.getName(), Head);
         
         //loop for change Head node  
-        for (int head = 0; !(GridNumber.contains(target.getName())) ; head++) {
+        for (int head = 0; head < GridNumber.size() ; head++) {
             
             // new head is next grid in ArrayList
             Head = AllGrids.get( GridNumber.get(head) );  
@@ -81,9 +81,6 @@ public class MyGraph {
                 System.out.println("TARGET");
                 break;
             } 
-            
-            // new head is next grid in ArrayList
-           // Head = AllGrids.get( GridNumber.get(head) );    
 
         }
 
@@ -111,11 +108,14 @@ public class MyGraph {
         source = searchGrid(G.getEdgeSource(e));
         Grid target = searchGrid(G.getEdgeTarget(e));
         
-        System.out.println(" Click row i col j " );
+        System.out.println("Click row i col j " );
         target.print();
         }
-        System.out.println(" Click row i col j " );
-        source.print();
+        if(source !=null){
+            System.out.println("Click row i col j " );
+            source.print();
+        }
+        
     }
     
     ////////////////////////////////////////////////////////////////////////////   
@@ -131,13 +131,14 @@ public class MyGraph {
         if (G.containsVertex(key1) && G.containsVertex(key2)) {
             DSP = new DijkstraShortestPath<>(SG, key1, key2);
             List<DefaultEdge> path = DSP.getPathEdgeList();
-            if (path != null) {
+            //if (path != null) {
                 System.out.printf("\nShortest path (length = %.0f) \n",
                         DSP.getPathLength());
                 printDefaultEdges(path);
-            } else {
-                System.out.printf("\nNo path from %s to %s \n", key1, key2);
-            }
+           // }
+        }
+        else {
+                System.out.println("\nNo path from "+key1+ " to "+key2+" |Enter Grid again !");
         }
     }
     
