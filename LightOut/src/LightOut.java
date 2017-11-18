@@ -16,7 +16,7 @@ public class LightOut {
         System.out.print("Enter number of rows (2-4)= ");
         scan  = new Scanner(System.in);
         grid = Integer.parseInt(scan.nextLine());
-        }while(grid< 2 || grid > 5 );
+        }while(grid< 2 || grid > 4 );
         
         System.out.println("You're Grid  = "+ grid + 
                            " x "+ grid +" = " + grid*grid );
@@ -25,9 +25,11 @@ public class LightOut {
         
         
         System.out.println("Enter initial states : " );
+        
         boolean error = true;
         String[] row = new String[grid];
         int[][] arr = new int[grid][grid];
+        // You can create arr from : http://www.brianveitch.com/lights-out/
         do {
 
             try {
@@ -36,15 +38,13 @@ public class LightOut {
 
                     row[i] = scan.nextLine();
                     String[] buf = row[i].split(" ");
-
                     for (int j = 0; j < grid; j++) {
                         arr[i][j] = Integer.parseInt(buf[j]);
-                        /*
-                        Random r = new Random(); 
-                        arr[i][j] = r.nextInt(2);
-                        */
+                        
+                        //Random r = new Random();
+                       // arr[i][j] = r.nextInt(2);
+                         
                     }
-            
 
                 }
                 error = false;
@@ -55,8 +55,17 @@ public class LightOut {
 
         } while (error);
         
+        
+        /*
+        // You can create arr from : http://www.brianveitch.com/lights-out/
+        int[][] arr = { {0,0,0,1},
+                        {0,0,0,0},
+                        {0,0,1,1},
+                        {1,0,1,0},
+                      };
+        */
         Grid Grid = new Grid(arr);
-        //Grid.print();
+        Grid.print();
         MyGraph Mygraph = new MyGraph(Grid);
         System.out.println("----------------" );
         Mygraph.ShortestPath(Grid);

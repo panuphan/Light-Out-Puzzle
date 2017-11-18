@@ -33,18 +33,17 @@ public class MyGraph {
         Grid Head = new Grid(arr);
         GridNumber.add( Head.getName() );
         AllGrids.put(Head.getName(), Head);
-        boolean found = GridNumber.contains(target.getName());
+        
         
         //loop for change Head node  
-        for (int head = 0; head < GridNumber.size() && !found; head++) {
-
+        for (int head = 0; head < GridNumber.size() ; head++) {
             // new head is next grid in ArrayList
             Head = AllGrids.get(GridNumber.get(head));
 
             
             //loop for change switch' position
-            for (int i = 0; i < arr.length && !found; i++) {
-                for (int j = 0; j < arr.length && !found; j++) {
+            for (int i = 0; i < arr.length ; i++) {
+                for (int j = 0; j < arr.length ; j++) {
 
                     // Create Grid tail, tail is Head enter switch
                     Grid tail = new Grid(Head.M(i, j));
@@ -61,11 +60,14 @@ public class MyGraph {
                         G.addEdge(Head.getName(), tail.getName());
 
                     }
-
+                    
+                  if(GridNumber.contains(target.getName()))break;
                 }
-
+                
+              if(GridNumber.contains(target.getName()))break;
             }//end loop for change switch' position
-
+            
+          if(GridNumber.contains(target.getName()))break;
         }//end loop for change head
 
     }
