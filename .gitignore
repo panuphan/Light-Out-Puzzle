@@ -1,18 +1,18 @@
-/LightOut/nbproject/
+\nbproject/
 
-/LightOut/*.xml/
+\*.xml/
 
-/LightOut/*.mf/
+\*.mf/
 
-/LightOut/build/
+\build/
 
-/LightOut/test/
+\test/
 
-/LightOut/src/Example/
+\Example/
 
 
 \.idea/
 
 out/
 
-LightOut/LightOut\.iml
+\.iml
